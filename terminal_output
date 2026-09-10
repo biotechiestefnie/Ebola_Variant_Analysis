@@ -1,0 +1,89 @@
+## Terminal commands and ouput upon running the makefile:
+
+
+```
+(bioinfo) Stefanies-MacBook-Pro:~ biotechiestefnie$ cd work
+(bioinfo) Stefanies-MacBook-Pro:work biotechiestefnie$ # Obtain the makefile
+(bioinfo) Stefanies-MacBook-Pro:work biotechiestefnie$ curl -s http://data.biostarhandbook.com/make/snpcall.mk > Makefile
+(bioinfo) Stefanies-MacBook-Pro:work biotechiestefnie$ 
+(bioinfo) Stefanies-MacBook-Pro:work biotechiestefnie$ # Run the makefile
+(bioinfo) Stefanies-MacBook-Pro:work biotechiestefnie$ make
+USAGE:
+
+  make vcf         # generates a VCF file
+
+  make clean       # removes test data
+  make realclean   # removes all intermediate files
+  make data        # downloads the full dataset
+
+DEFAULTS:
+
+   ACC=AF086833  SRR=SRR1553425  CPU=4  LIMIT=10000
+
+(bioinfo) Stefanies-MacBook-Pro:work biotechiestefnie$ make vcf
+snpEff -v AF086833 vcf/SRR1553425-AF086833.vcf.gz | bcftools view -O z > vcf/SRR1553425-AF086833.annotated.vcf.gz
+00:00:00 SnpEff version SnpEff 5.4c (build 2026-02-23 07:25), by Pablo Cingolani
+00:00:00 Command: 'ann'
+00:00:00 Reading configuration file 'snpEff.config'. Genome: 'AF086833'
+00:00:00 Looking for config file: '/Users/biotechiestefnie/work/snpEff.config'
+00:00:00 Reading config file: /Users/biotechiestefnie/work/snpEff.config
+00:00:00 done
+00:00:00 Reading database for genome version 'AF086833' from file '/Users/biotechiestefnie/work/./data/AF086833/snpEffectPredictor.bin' (this might take a while)
+00:00:00 done
+00:00:00 Loading Motifs and PWMs
+00:00:00 Building interval forest
+00:00:00 done.
+00:00:00 Genome stats :
+#-----------------------------------------------
+# Genome name                : 'AF086833'
+# Genome version             : 'AF086833'
+# Genome ID                  : 'AF086833[0]'
+# Has protein coding info    : true
+# Has Tr. Support Level info : true
+# Genes                      : 7
+# Protein coding genes       : 7
+#-----------------------------------------------
+# Transcripts                : 9
+# Avg. transcripts per gene  : 1.29
+# TSL transcripts            : 0
+#-----------------------------------------------
+# Checked transcripts        : 
+#               AA sequences :      0 ( 0.00% )
+#              DNA sequences :      0 ( 0.00% )
+#-----------------------------------------------
+# Protein coding transcripts : 9
+#              Length errors :      1 ( 11.11% )
+#  STOP codons in CDS errors :      1 ( 11.11% )
+#         START codon errors :      0 ( 0.00% )
+#        STOP codon warnings :      0 ( 0.00% )
+#              UTR sequences :      0 ( 0.00% )
+#               Total Errors :      1 ( 11.11% )
+# WARNING                    : No protein coding transcript has UTR
+#-----------------------------------------------
+# Cds                        : 10
+# Exons                      : 10
+# Exons with sequence        : 10
+# Exons without sequence     : 0
+# Avg. exons per transcript  : 1.11
+#-----------------------------------------------
+# Number of chromosomes      : 1
+# Chromosomes                : Format 'chromo_name size codon_table'
+#		'AF086833.2'	18959	Standard
+#-----------------------------------------------
+
+00:00:00 Predicting variants
+[W::bcf_hdr_check_sanity] MQ should be declared as Type=Float
+
+WARNINGS: Some warning were detected
+Warning type	Number of warnings
+WARNING_TRANSCRIPT_MULTIPLE_STOP_CODONS	362
+
+
+00:00:00 Creating summary file: snpEff_summary.html
+00:00:01 Creating genes file: snpEff_genes.txt
+00:00:01 done.
+00:00:01 Done.
+bcftools index vcf/SRR1553425-AF086833.annotated.vcf.gz
+
+# Annotated VCF file: vcf/SRR1553425-AF086833.annotated.vcf.gz
+```
