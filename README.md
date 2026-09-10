@@ -2,7 +2,7 @@
 Analysis of Ebola variants from 1972-2014
 
 The purpose of this project was to generate a makefile that can be used for variant calling analysis. To test the script, we evaluated Ebola variants
-from 1972-2014, reproducing findings regarding the variations occurring in the Ebola virus genome as reported in "Genomic surveillance elucidates Ebola virus origin," originally published in Nature (2014). However, this makefile can be adjusted to any sequence dataset stored as an SRR file.
+from 1972-2014, reproducing findings regarding the variations occurring in the Ebola virus genome as reported in "Genomic surveillance elucidates Ebola virus origin," originally published in Nature (2014). However, this makefile can be adjusted to any sequence dataset stored with an SRR run id.
 
 ### To Run this Program:
 
@@ -51,3 +51,14 @@ make vcf
 ```
 
 The programs will run for a minute or two depending on computer speed, and will provide detailed updates on progress
+Once finished, the makefile will have produced the following:
+
+- The viral sequence files as FASTA.
+- The viral annotation files as GFF.
+- Sequencing data in FASTQ format obtained from the Short Read Archive (SRA)
+- Quality controlled sequenced data with trimmed and quality filtered reads using trimmomatic.
+- An alignment BAM file generated with the bwa short read aligner, filtered, sorted, and indexed with samtools.
+- A VCF file generated with bcftools lists the variants of the 2014 data relative to 1972 strain.
+- An annotated VCF file generated with snpEff that describes the effect each variant has on the protein-coding regions.An HTML file that reports the various variants and their effects on the genome.
+
+
